@@ -1,6 +1,10 @@
 const express = require('express')
 const router = express.Router()
 
+// importo data
+const posts = require('../data/posts')
+
+
 
 // index
 router.get('/', (req, res) => {
@@ -9,7 +13,13 @@ router.get('/', (req, res) => {
 
 // show
 router.get('/:id', (req, res) => {
-    res.send('dettaglio post' + req.params.id)
+
+    const id = req.params.id
+
+    const resPostById = posts.find(post => post.id == id)
+
+    res.send(resPostById)
+
 });
 
 //store
@@ -29,7 +39,15 @@ router.patch('/:id', (req, res) => {
 
 // destroy
 router.delete('/:id', (req, res) => {
-    res.send('elimina del post' + req.params.id)
+
+    const id = req.params.id
+
+    const index = posts.findIndex(post => post.id == id)
+
+    posts.splice(index, 1)
+
+    res.send(posts)
+
 })
 
 module.exports = router
