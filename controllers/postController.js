@@ -3,14 +3,27 @@ const posts = require('../data/posts')
 
 // index
 function index(req, res) {
-    res.json({ posts });
+
+    let filteredPosts = posts
+
+    if (req.query.tag) {
+        filteredPosts = posts.filter(post => post.tags.includes(req.query.tag))
+    }
+
+    if (filteredPosts.length === 0) {
+        res.status(404)
+    }
+
+    res.send(filteredPosts)
 };
 
 // show
 function show(req, res) {
+
     const id = req.params.id
     const resPostById = posts.find(post => post.id == id)
     res.send(resPostById)
+
 };
 
 //store

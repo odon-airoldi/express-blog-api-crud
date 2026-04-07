@@ -25,7 +25,7 @@ const posts = [
         titolo: 'Consigli per JavaScript',
         contenuto: 'Ecco alcuni consigli utili per migliorare con JS.',
         immagine: '/images/post4.jpg',
-        tags: ['javascript', 'tips']
+        tags: ['javascript', 'tips', 'web']
     },
     {
         id: 5,
