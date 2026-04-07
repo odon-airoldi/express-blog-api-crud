@@ -1,53 +1,26 @@
 const express = require('express')
 const router = express.Router()
 
-// importo data
-const posts = require('../data/posts')
+const postController = require('../controllers/postController')
 
 
 
 // index
-router.get('/', (req, res) => {
-    res.json({ posts });
-});
+router.get('/', postController.index)
 
 // show
-router.get('/:id', (req, res) => {
-
-    const id = req.params.id
-
-    const resPostById = posts.find(post => post.id == id)
-
-    res.send(resPostById)
-
-});
+router.get('/:id', postController.show);
 
 //store
-router.post('/', (req, res) => {
-    res.send('creazione')
-});
+router.post('/', postController.store);
 
 //update
-router.put('/:id', (req, res) => {
-    res.send('modifica' + req.params.id)
-})
+router.put('/:id', postController.put)
 
 // modify
-router.patch('/:id', (req, res) => {
-    res.send('modifica parziale' + req.params.id)
-})
+router.patch('/:id', postController.patch)
 
-// destroy
-router.delete('/:id', (req, res) => {
-
-    const id = req.params.id
-
-    const index = posts.findIndex(post => post.id == id)
-
-    posts.splice(index, 1)
-
-    res.send(posts)
-
-})
+// delete
+router.delete('/:id', postController.destroy)
 
 module.exports = router
