@@ -30,10 +30,14 @@ function patch(req, res) {
 
 // delete
 function destroy(req, res) {
-    const id = req.params.id
-    const index = posts.findIndex(post => post.id == id)
-    posts.splice(index, 1)
-    res.send(posts)
+    const id = parseInt(req.params.id)
+    const post = posts.find(post => post.id === id)
+
+    posts.splice(posts.indexOf(post), 1)
+    console.log(posts)
+
+    res.sendStatus(204)
+
 }
 
 
