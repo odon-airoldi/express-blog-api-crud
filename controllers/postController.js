@@ -10,18 +10,24 @@ function index(req, res) {
         filteredPosts = posts.filter(post => post.tags.includes(req.query.tag))
     }
 
-    if (filteredPosts.length === 0) {
-        res.status(404)
-    }
-
     res.send(filteredPosts)
 };
 
 // show
 function show(req, res) {
 
-    const id = req.params.id
-    const resPostById = posts.find(post => post.id == id)
+    const id = parseInt(req.params.id)
+
+    const resPostById = posts.find(post => post.id === id)
+
+    if (!resPostById) {
+
+        return res.status(404).json({
+            status: '404',
+            message: 'error'
+        })
+    }
+
     res.send(resPostById)
 
 };
@@ -46,8 +52,17 @@ function destroy(req, res) {
     const id = parseInt(req.params.id)
     const post = posts.find(post => post.id === id)
 
+    if (!post) {
+
+        return res.status(404).json({
+            status: '404',
+            message: 'error'
+        })
+    }
+
     posts.splice(posts.indexOf(post), 1)
     console.log(posts)
+
 
     res.sendStatus(204)
 
