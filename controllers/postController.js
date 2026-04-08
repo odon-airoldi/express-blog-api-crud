@@ -59,6 +59,15 @@ function put(req, res) {
 
     const updPost = posts.find(post => post.id === id)
 
+    if (!updPost) {
+
+        return res.status(404).json({
+            status: '404',
+            message: 'not found'
+        })
+
+    }
+
     if (req.body.titolo) { updPost.titolo = req.body.titolo }
     if (req.body.contenuto) { updPost.contenuto = req.body.contenuto }
     if (req.body.immagine) { updPost.immagine = req.body.immagine }
