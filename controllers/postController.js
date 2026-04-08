@@ -34,7 +34,22 @@ function show(req, res) {
 
 //store
 function store(req, res) {
-    res.send('creazione')
+
+    const newPostid = posts[posts.length - 1].id + 1
+
+    const newPost = {
+        id: newPostid,
+        titolo: req.body.titolo,
+        contenuto: req.body.contenuto,
+        immagine: req.body.immagine,
+        tags: req.body.tags
+    }
+
+    posts.push(newPost)
+
+    console.log(posts)
+
+    res.status(201).json(newPost)
 }
 
 //update
