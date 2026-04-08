@@ -11,6 +11,9 @@ const port = 3000
 // assets public
 app.use(express.static('public'));
 
+// register body-parser application/json
+app.use(express.json())
+
 // import routers
 app.use('/posts/', routersPosts)
 

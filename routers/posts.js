@@ -20,7 +20,7 @@ router.put('/:id', postController.put)
 // modify
 router.patch('/:id', postController.patch)
 
-// delete
+// destroy
 router.delete('/:id', postController.destroy)
 
 module.exports = router
