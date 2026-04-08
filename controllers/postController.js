@@ -54,7 +54,19 @@ function store(req, res) {
 
 //update
 function put(req, res) {
-    res.send('modifica' + req.params.id)
+
+    const id = parseInt(req.params.id)
+
+    const updPost = posts.find(post => post.id === id)
+
+    if (req.body.titolo) { updPost.titolo = req.body.titolo }
+    if (req.body.contenuto) { updPost.contenuto = req.body.contenuto }
+    if (req.body.immagine) { updPost.immagine = req.body.immagine }
+    if (req.body.tags) { updPost.tags = req.body.tags }
+
+    console.log(posts)
+
+    res.status(201).json(updPost)
 }
 
 // modify
