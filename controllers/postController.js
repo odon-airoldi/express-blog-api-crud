@@ -15,7 +15,6 @@ function index(req, res) {
 
 // show
 function show(req, res) {
-
     const id = parseInt(req.params.id)
 
     const resPostById = posts.find(post => post.id === id)
